@@ -1,0 +1,26 @@
+name: Heroku Deployment
+
+on:
+  push:
+    branches: [ master ]
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure heroku git
+        run: |
+          touch $HOME/.netrc
+          echo "machine git.heroku.com" >> $HOME/.netrc
+          echo "  login ${{ secrets.heroku_email }}" >> $HOME/.netrc
+          echo "  password ${{ secrets.api_key }}" >> $HOME/.netrc
+
+      - name: Add Heroku Remote
+        run: git remote add heroku https://git.heroku.com/intern-test-server.git
+
+      - name: Push current code
+        run: git push heroku master -f
