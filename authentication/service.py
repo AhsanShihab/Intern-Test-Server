@@ -16,7 +16,7 @@ def verify_password(plain_password, hashed_password):
 
 
 async def create_toke_pair(user: User):
-    access_token_expires = timedelta(minutes=os.environ.get("ACCESS_TOKEN_TTL", 15))
+    access_token_expires = timedelta(minutes=int(os.environ.get("ACCESS_TOKEN_TTL", 15)))
     access_token = create_token(
         data={"user": user.username, "id": user.id},
         expires_delta=access_token_expires,
