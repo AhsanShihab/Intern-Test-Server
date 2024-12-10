@@ -2,14 +2,6 @@
 
 This is a simple api server made with [FastAPI](https://fastapi.tiangolo.com) framework and PostgreSQL database. Feel free to clone the repository and play with the code.
 
-## Live Server
-
-The server is Live at this url: https://intern-test-server.herokuapp.com
-
-See the docs
-- [Redoc](https://intern-test-server.herokuapp.com/redoc)
-- [Swagger](https://intern-test-server.herokuapp.com/docs)
-
 ## Local Setup
 
 Clone the Project
@@ -22,12 +14,12 @@ or
 git clone https://github.com/AhsanShihab/Intern-Test-Server.git
 ```
 
-(Optional) Create a virtual environment and activate the environment
+Create a virtual environment and activate the environment
 
 ```
 cd Intern-Test-Server
-python3 -m venv venv  
-source venv/bin/activate 
+python3 -m venv .venv  
+source .venv/bin/activate 
 ```
 
 Install required packages
@@ -36,9 +28,13 @@ Install required packages
 pip3 install -r requirements.txt
 ```
 
-You need a running PostgreSQL server. Run one locally, preferably in a docker container, or in the cloud, then set the uri in the environment varibale `DB_URL`  or harcode it in 'database.py' file.
+You need a running PostgreSQL server. Run one locally, preferably in a docker container. You can run the following command to create a Postgres container:
 
-Then start the server
+```
+docker run -d --name postgres-17 -p 5432:5432 -e POSTGRES_PASSWORD=password123 -e PGDATA=/var/lib/postgresql/data/pgdata -v ./.db_data:/var/lib/postgresql/data postgres:17
+```
+
+Then start the fast api server
 
 ```
 uvicorn main:app --reload  

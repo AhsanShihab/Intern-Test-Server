@@ -13,7 +13,7 @@ from sqlalchemy.ext.declarative import declarative_base, declared_attr
 pluralize = inflect.engine().plural
 
 SQLALCHEMY_DATABASE_URL = os.environ.get(
-    "DB_URL", "postgresql+asyncpg://postgres:postgrespw@localhost:55002"
+    "DB_URL", "postgresql+asyncpg://postgres:password123@localhost:5432"
 )
 
 print('using SQLALCHEMY_DATABASE_URL:', SQLALCHEMY_DATABASE_URL)
